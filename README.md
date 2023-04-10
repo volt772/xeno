@@ -1,8 +1,8 @@
-프로젝트의 일부만 보여집니다.
+전체 프로젝트의 일부만 보여집니다.
 
 <!-- ABOUT THE PROJECT -->
 ## Xeno
-<img src="https://user-images.githubusercontent.com/57861321/226325072-467fb9d1-2ea4-4d50-9ee5-0314ae29c879.png"><br/>
+<img src="https://github.com/volt772/xeno/blob/main/notifier.png"><br/>
 
 
 
