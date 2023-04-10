@@ -1,29 +1,31 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
+import datetime
+import time
+from multiprocessing import Process, cpu_count
+
 from v2 import const as C
 from v2.daemons import daemon_logger
 from v2.handlers.sender.sd_dispatch import SendDispatcher
-from multiprocessing import Process, Pool, Queue, cpu_count
-
-import time
-import datetime
-
 
 """ 큐 실행기
-- dispatcher에서 발송
+Redis에 저장된 모든 알림큐를 순차적으로 꺼낸 후,
+발송할 수 있도록 발송기에 전달
 """
 
 _dispatcher = SendDispatcher()
 
+
 def run():
     while True:
         try:
+            _dispatcher.send_notification()
             time.sleep(float(1.0))
         except Exception as e:
             daemon_logger.save_log(
-                C.Logger.QEXTRACTOR, 
-                "{0} [RunErr : {1}]".format(datetime.datetime.now(), str(e))
+                C.Logger.QEXTRACTOR,
+                "{0} [RunErr : {1}]".format(datetime.datetime.now(), str(e)),
             )
 
 

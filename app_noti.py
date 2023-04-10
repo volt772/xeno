@@ -11,8 +11,9 @@ from v2 import xeno
 from v2.helpers import config_loader as _cf
 from v2.helpers import log_maker
 
-""" AppNoti (라우팅)
-- Routing URL을 받아 'xeno' 로 전달한다.
+""" Description
+프로그램의 시작점이다.
+제일 먼저 URL Routing을 받아 각각 분배기로 전달
 """
 
 app = Flask(__name__)
@@ -34,6 +35,10 @@ class RoutingException(Exception):
 
 @app.route("/notify", methods=["GET", "POST"], endpoint=ep.MAIL)
 @app.route("/notify_cal", methods=["GET", "POST"], endpoint=ep.CALENDAR)
+@app.route("/domain_change", methods=["GET", "POST"], endpoint=ep.DOMAIN)
+@app.route("/handle_mailinfo", methods=["GET", "POST"], endpoint=ep.MAIL_HOST)
+@app.route("/put", methods=["GET", "POST"], endpoint=ep.USER_LOGIN)
+
 def route():
     """Routing"""
     r_data = r_ip = ""
@@ -53,7 +58,6 @@ def route():
             r_path, str(e)
         )
         raise RoutingException(msg)
-
 
     return "", 204
 
